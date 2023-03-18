@@ -16,11 +16,17 @@ const posts: Post[] = await getPosts();
         posts.map(({ title, youTubeLink, imagesCollection }) => (
           <div>
             <h2 class='uppercase text-center m-8'>{title}</h2>
-            <div>
+            <div class='mb-4'>
               <YouTube id={youTubeLink} style='height: 200px; width: 1000px' />
             </div>
             {imagesCollection.items.map(({ url, height, width }) => (
-              <Image src={url} alt='' height={height} width={width} />
+              <Image
+                src={url}
+                alt=''
+                height={height}
+                width={width}
+                class='mb-4'
+              />
             ))}
           </div>
         ))
