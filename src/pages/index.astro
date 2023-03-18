@@ -3,20 +3,28 @@ import Layout from '../layouts/Layout.astro';
 import { YouTube } from 'astro-embed';
 import { getPosts } from '../queries/Home';
 import type { Post } from '../types/shared';
+import Image from 'astro/components/Image.astro';
 
-const posts = (await getPosts()) as Post[];
+const posts: Post[] = await getPosts();
 ---
 
 <Layout title='Zoe Bassi'>
   <main>
-    <h1 class='uppercase'>Zoe Bassi</h1>
-    {
-      posts.map(({ title, youTubeLink, imagesCollection }) => (
-        <div>
-          <h2 class='uppercase'>{title}</h2>
-          <YouTube id={youTubeLink} />
-        </div>
-      ))
-    }
+    <h1 class='uppercase text-center m-8 text-3xl'>Zoe Bassi</h1>
+    <div class='max-w-7xl mx-auto'>
+      {
+        posts.map(({ title, youTubeLink, imagesCollection }) => (
+          <div>
+            <h2 class='uppercase text-center m-8'>{title}</h2>
+            <div>
+              <YouTube id={youTubeLink} style='height: 200px; width: 1000px' />
+            </div>
+            {imagesCollection.items.map(({ url, height, width }) => (
+              <Image src={url} alt='' height={height} width={width} />
+            ))}
+          </div>
+        ))
+      }
+    </div>
   </main>
 </Layout>
