@@ -1,9 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { YouTube } from 'astro-embed';
+import { getPosts } from '../queries/Home';
+import type { Post } from '../types/shared';
+
+const posts = (await getPosts()) as Post[];
 ---
 
 <Layout title='Zoe Bassi'>
   <main>
-    <h1>Zoe Bassi</h1>
+    <h1 class='uppercase'>Zoe Bassi</h1>
+    {
+      posts.map(({ title, youTubeLink, imagesCollection }) => (
+        <div>
+          <h2 class='uppercase'>{title}</h2>
+          <YouTube id={youTubeLink} />
+        </div>
+      ))
+    }
   </main>
 </Layout>
