@@ -10,15 +10,17 @@ const posts: Post[] = await getPosts();
 
 <Layout title='Zoe Bassi'>
   <main>
-    <div class='text-center m-12'>
-      <h1 class='uppercase mb-6 text-4xl'>Zoe Bassi</h1>
+    <div class='text-center m-12 md:m-20'>
+      <h1 class='uppercase mb-6 text-6xl md:text-8xl'>Zoe Bassi</h1>
       <p class='select-none font-extralight'>zoyabassi@gmail.com</p>
     </div>
     <div class='max-w-7xl mx-auto mb-6'>
       {
         posts.map(({ title, youTubeLink, imagesCollection }) => (
           <div>
-            <h2 class='uppercase text-2xl text-center m-8'>{title}</h2>
+            <h2 class='uppercase text-2xl text-center tracking-wide m-8'>
+              {title}
+            </h2>
             <div>
               <YouTube id={youTubeLink} style='height: 200px; width: 1000px' />
             </div>
