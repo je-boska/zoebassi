@@ -14,15 +14,19 @@ const sortedPosts = posts.sort((a, b) =>
 
 <Layout title="Zoe Bassi">
   <main>
-    <div class="m-12 text-center md:m-20">
+    <div class="my-20 text-center md:my-28">
       <h1 class="mb-6 text-6xl uppercase md:text-8xl">Zoe Bassi</h1>
-      <p class="select-none font-extralight">zoyabassi@gmail.com</p>
+      <p class="select-none text-sm font-extralight md:text-base">
+        zoyabassi@gmail.com
+      </p>
     </div>
-    <div class="mx-auto mb-6 max-w-7xl">
+    <div class="mx-auto max-w-7xl">
       {
         sortedPosts.map(({ title, youTubeLink, imagesCollection }) => (
-          <div>
-            <h2 class="m-8 text-center text-2xl tracking-wide">{title}</h2>
+          <div class="mb-20 md:mb-28">
+            <h2 class="text-vertical border-tb-2 absolute z-10 my-8 p-2 text-center text-2xl md:text-3xl">
+              {title.toUpperCase()}
+            </h2>
             <div class="mb-4">
               <YouTube id={youTubeLink} style="height: 200px; width: 1000px" />
             </div>
