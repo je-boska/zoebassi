@@ -8,33 +8,42 @@ import Image from 'astro/components/Image.astro';
 const posts: Post[] = await getPosts();
 ---
 
-<Layout title='Zoe Bassi'>
+<Layout title="Zoe Bassi">
   <main>
-    <div class='text-center m-12 md:m-20'>
-      <h1 class='uppercase mb-6 text-6xl md:text-8xl'>Zoe Bassi</h1>
-      <p class='select-none font-extralight'>zoyabassi@gmail.com</p>
+    <div class="m-12 text-center md:m-20">
+      <h1 class="mb-6 text-6xl uppercase md:text-8xl">Zoe Bassi</h1>
+      <p class="select-none font-extralight">zoyabassi@gmail.com</p>
     </div>
-    <div class='max-w-7xl mx-auto mb-6'>
+    <div class="mx-auto mb-6 max-w-7xl">
       {
-        posts.map(({ title, youTubeLink, imagesCollection }) => (
-          <div>
-            <h2 class='uppercase text-2xl text-center tracking-wide m-8'>
-              {title}
-            </h2>
-            <div class='mb-4'>
-              <YouTube id={youTubeLink} style='height: 200px; width: 1000px' />
+        posts.map(
+          ({
+            title,
+            youTubeLink,
+            imagesCollection,
+            sys: { firstPublishedAt },
+          }) => (
+            <div>
+              <h2 class="m-8 text-center text-2xl tracking-wide">{title}</h2>
+              <p>{firstPublishedAt}</p>
+              <div class="mb-4">
+                <YouTube
+                  id={youTubeLink}
+                  style="height: 200px; width: 1000px"
+                />
+              </div>
+              {imagesCollection.items.map(({ url, height, width }) => (
+                <Image
+                  src={url}
+                  alt=""
+                  height={height}
+                  width={width}
+                  class="mb-4"
+                />
+              ))}
             </div>
-            {imagesCollection.items.map(({ url, height, width }) => (
-              <Image
-                src={url}
-                alt=''
-                height={height}
-                width={width}
-                class='mb-4'
-              />
-            ))}
-          </div>
-        ))
+          )
+        )
       }
     </div>
   </main>

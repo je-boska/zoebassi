@@ -5,6 +5,9 @@ export async function getPosts() {
         query PostsQuery {
             postCollection {
                 items {
+                    sys {
+                        firstPublishedAt
+                    }
                     title
                     youTubeLink
                     imagesCollection {

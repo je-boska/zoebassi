@@ -17,6 +17,9 @@ export type ErrorPayload = {
 };
 
 export type Post = {
+  sys: {
+    firstPublishedAt: string;
+  };
   title: string;
   youTubeLink: string;
   imagesCollection: {
