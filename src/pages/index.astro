@@ -6,6 +6,10 @@ import type { Post } from '../types/shared';
 import Image from 'astro/components/Image.astro';
 
 const posts: Post[] = await getPosts();
+
+const sortedPosts = posts.sort((a, b) =>
+  a.sys.firstPublishedAt > b.sys.firstPublishedAt ? -1 : 1
+);
 ---
 
 <Layout title="Zoe Bassi">
@@ -16,34 +20,23 @@ const posts: Post[] = await getPosts();
     </div>
     <div class="mx-auto mb-6 max-w-7xl">
       {
-        posts.map(
-          ({
-            title,
-            youTubeLink,
-            imagesCollection,
-            sys: { firstPublishedAt },
-          }) => (
-            <div>
-              <h2 class="m-8 text-center text-2xl tracking-wide">{title}</h2>
-              <p>{firstPublishedAt}</p>
-              <div class="mb-4">
-                <YouTube
-                  id={youTubeLink}
-                  style="height: 200px; width: 1000px"
-                />
-              </div>
-              {imagesCollection.items.map(({ url, height, width }) => (
-                <Image
-                  src={url}
-                  alt=""
-                  height={height}
-                  width={width}
-                  class="mb-4"
-                />
-              ))}
+        sortedPosts.map(({ title, youTubeLink, imagesCollection }) => (
+          <div>
+            <h2 class="m-8 text-center text-2xl tracking-wide">{title}</h2>
+            <div class="mb-4">
+              <YouTube id={youTubeLink} style="height: 200px; width: 1000px" />
             </div>
-          )
-        )
+            {imagesCollection.items.map(({ url, height, width }) => (
+              <Image
+                src={url}
+                alt=""
+                height={height}
+                width={width}
+                class="mb-4"
+              />
+            ))}
+          </div>
+        ))
       }
     </div>
   </main>
