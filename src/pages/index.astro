@@ -27,20 +27,18 @@ const sortedPosts = posts.sort((a, b) =>
             <h2 class="border-tb-2 mb-4 p-2 text-center text-2xl tracking-wider md:text-3xl">
               {title.toUpperCase()}
             </h2>
-            <div class="mx-8 mb-4">
+            <div class="mb-4">
               <YouTube id={youTubeLink} style="height: 200px; width: 1000px" />
             </div>
-            <div class="mx-8">
-              {imagesCollection.items.map(({ url, height, width }) => (
-                <Image
-                  src={url}
-                  alt=""
-                  height={height}
-                  width={width}
-                  class="mb-4"
-                />
-              ))}
-            </div>
+            {imagesCollection.items.map(({ url, height, width }) => (
+              <Image
+                src={url}
+                alt=""
+                height={height}
+                width={width}
+                class="mb-4"
+              />
+            ))}
           </div>
         ))
       }
