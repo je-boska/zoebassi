@@ -18,30 +18,37 @@ const sortedPosts = posts.sort((a, b) =>
       <h1 class="mb-6 text-6xl uppercase md:text-8xl lg:text-[10rem]">
         Zoe Bassi
       </h1>
+      <p>Director // Videographer</p>
+      <p>Based in Berlin</p>
       <p class="select-none text-sm font-extralight md:text-base">
         zoyabassi@gmail.com
       </p>
     </div>
-    <div class="mx-auto max-w-7xl">
+    <div class="mx-auto max-w-[1920px]">
       {
         sortedPosts.map(({ title, youTubeLink, imagesCollection }) => (
           <div class="mb-20 md:mb-32">
             <h2 class="border-tb-2 mb-4 p-2 text-center text-xl tracking-wider md:text-2xl">
               {title.toUpperCase()}
             </h2>
-            <div class="mb-4" data-aos="fade">
-              <YouTube id={youTubeLink} style="height: 200px; width: 1000px" />
+            <div class="grid-cols-2 md:grid md:gap-4 md:p-4">
+              <div class="mb-4 md:mb-0" data-aos="fade">
+                <YouTube
+                  id={youTubeLink}
+                  style="height: 200px; width: 1000px"
+                />
+              </div>
+              {imagesCollection.items.map(({ url, height, width }) => (
+                <Image
+                  data-aos="fade"
+                  src={url}
+                  alt=""
+                  height={height}
+                  width={width}
+                  class="mb-4 md:mb-0"
+                />
+              ))}
             </div>
-            {imagesCollection.items.map(({ url, height, width }) => (
-              <Image
-                data-aos="fade"
-                src={url}
-                alt=""
-                height={height}
-                width={width}
-                class="mb-4"
-              />
-            ))}
           </div>
         ))
       }
