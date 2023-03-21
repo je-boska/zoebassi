@@ -23,22 +23,24 @@ const sortedPosts = posts.sort((a, b) =>
     <div class="mx-auto max-w-7xl">
       {
         sortedPosts.map(({ title, youTubeLink, imagesCollection }) => (
-          <div class="mb-20 md:mb-28">
-            <h2 class="text-vertical border-tb-2 absolute z-10 my-8 p-2 text-center text-2xl md:text-3xl">
+          <div class="mb-20 md:mb-32">
+            <h2 class="border-tb-2 mb-4 p-2 text-center text-2xl tracking-wider md:text-3xl">
               {title.toUpperCase()}
             </h2>
-            <div class="mb-4">
+            <div class="mx-8 mb-4">
               <YouTube id={youTubeLink} style="height: 200px; width: 1000px" />
             </div>
-            {imagesCollection.items.map(({ url, height, width }) => (
-              <Image
-                src={url}
-                alt=""
-                height={height}
-                width={width}
-                class="mb-4"
-              />
-            ))}
+            <div class="mx-8">
+              {imagesCollection.items.map(({ url, height, width }) => (
+                <Image
+                  src={url}
+                  alt=""
+                  height={height}
+                  width={width}
+                  class="mb-4"
+                />
+              ))}
+            </div>
           </div>
         ))
       }
